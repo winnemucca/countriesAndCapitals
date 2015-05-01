@@ -1,0 +1,58 @@
+<div class="container-fluid">
+
+	<div ng-if='loading'> searching for countries...</div>
+
+	<div class="form-group">
+		<label for="exampleInputEmail1">Countries</label>
+	    <input type="text" class="searcher" id="exampleInputEmail1" placeholder="Countries and Capitals", ng-model="search">
+
+  	</div>
+
+  	<div ng-if='!loading'> 
+
+		<table class="table table-hover table-striped"> 
+			<caption> Country info</caption>
+			<thead>
+				<tr> 
+					<th> Home</th>
+					<th> Country Code</th>
+					<th> Capital</th>
+					<th> Area in km</th>
+					<th> Continent</th>
+					<th> Population</th>
+
+				</tr>
+			</thead>
+
+			<tbody>
+				<!-- <tr ng-repeat="country in countries track by $index|filter:search|limitTo:10"> --> 
+				<tr ng-repeat="country in countries |filter:search|limitTo:10 "> 
+
+					<td><a ng-href="#!/countries/{{country.countryCode}}">{{country.countryName}}</a> </td>
+					<td>{{country.countryCode}} </td>
+					<td>{{country.capital}} </td>
+					<td>{{country.areaInSqKm}} </td>
+					<td>{{country.continentName}} </td>
+					<td>{{country.population}} </td>
+
+				</tr>
+			</tbody>
+
+
+		</table>
+
+		<!-- home button -->
+		<div class="search"> 
+			<a href="#/home"> <button type="button" class="btn btn-lg btn-primary ">Home</button> </a>
+		</div>
+
+	</div>
+
+
+	
+
+
+
+  </div>
+
+  
