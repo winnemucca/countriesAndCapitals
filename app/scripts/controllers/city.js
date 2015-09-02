@@ -17,6 +17,7 @@ viewsModule.config(['$routeProvider',function($routeProvider){
                  var countryCode = $route.current.params.countryCode;
                  console.log(countryCode);
                 console.log(cacCountries(countryCode));
+                // need to get specific country info
                 // return cacCountries(countryCode);
                 return countryCode;
       		}]
