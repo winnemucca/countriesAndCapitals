@@ -17,9 +17,15 @@
 		<p>Neighbors: {{neighbors}} </p>
 
 		<div>
-			<h1>Images</h1>
-			<img class="cac-image" ng-src="http://www.geonames.org/img/country/250/{{country.countryCode.toUpperCase()}}.png" />
-	  		<img class="cac-image" ng-src="http://www.geonames.org/flags/x/{{country.countryCode.toLowerCase()}}.gif" />
+			<div>
+				<h3>Map location</h3>
+				<img class="cac-image" ng-src="http://www.geonames.org/img/country/250/{{countryCode.toUpperCase()}}.png" />
+			</div>
+			<div>
+				<h3>Flag</h3>
+	  			<img class="cac-image" ng-src="http://www.geonames.org/flags/x/{{countryCode.toLowerCase()}}.gif" />
+				
+			</div>
 		</div>
 
 		<div> 

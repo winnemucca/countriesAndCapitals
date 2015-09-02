@@ -5,17 +5,20 @@ viewsModule.config(['$routeProvider',function($routeProvider){
     	resolve: {
     		cityDetails:['cacFindCountry','$route', function(cacFindCountry,$route){
     			var countryCode = $route.current.params.countryCode;
+                console.log('cityDetails',cacFindCountry(countryCode))
     			return cacFindCountry(countryCode);
     		}],
     		countryNeighbors : ['cacFindNeighbors','$route', function(cacFindNeighbors,$route) {
                 var countryCode = $route.current.params.countryCode;
-                console.log(countryCode);
                 // pushes country code into neighbors
     			return cacFindNeighbors(countryCode);
     		}],
     		countryDetails : ['cacCountries', '$route', function(cacCountries, $route) {
-                console.log(cacCountries);
-                return cacCountries;
+                 var countryCode = $route.current.params.countryCode;
+                 console.log(countryCode);
+                console.log(cacCountries(countryCode));
+                // return cacCountries(countryCode);
+                return countryCode;
       		}]
     	}
 	});
@@ -32,6 +35,8 @@ viewsModule.controller('CityCtrl', ['countryNeighbors', 'countryDetails', 'cityD
     $scope.capital = cityDetails[0].name
 
     $scope.neighbors = countryNeighbors[0].countryName + ' & ' + countryNeighbors[1].countryName;
+
+    $scope.countryCode = countryDetails;
    
 
 
