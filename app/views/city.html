@@ -1,13 +1,24 @@
-<h1>Welcome to  {{city}} </h1>
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h1 class="panel-title">Welcome to  {{city}} </h1>
+		
+	</div>
+	
+	<div class="panel-body">
+		
 
-<p> Population in Country {{country.population}} </p>
+		<p> Population in Country: {{population}} </p>
 
-<p> Area {{country.areaInSqKm}} </p>
+		<p> Area: {{country.areaInSqKm}} </p>
 
-<p> Capital {{city.name}} </p>
+		<p> Capital: {{capital}} </p>
 
-<p> Population of capital {{city.population}} </p>
+		<p> Population of capital: {{population}} </p>
 
-<div class="search"> 
-	<a href="#/home"> <button type="button" class="btn btn-lg btn-primary ">Home</button> </a>
+		<div> 
+			<a href="#/home"> <button type="button" class="btn btn-lg btn-primary ">Home</button> </a>
+
+			<a href="#!/countries"><button type="button" class="btn btn-lg btn-primary ">Browse Countries</button></a>
+		</div>
+	</div>
 </div>

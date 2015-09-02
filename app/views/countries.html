@@ -25,8 +25,8 @@
 			</thead>
 
 			<tbody>
-				<!-- <tr ng-repeat="country in countries track by $index|filter:search|limitTo:10"> --> 
-				<tr ng-repeat="country in countries |filter:search|limitTo:10 "> 
+				
+				<tr ng-repeat="country in countries |filter:search| pages:currentPage : itemsPerPage "> 
 
 					<td><a ng-href="#!/countries/{{country.countryCode}}">{{country.countryName}}</a> </td>
 					<td>{{country.countryCode}} </td>
@@ -40,6 +40,21 @@
 
 
 		</table>
+
+		<pagination  
+	        total-items="totalItems" 
+	        items-per-page= "itemsPerPage"
+	        ng-model="currentPage" 
+	        max-size = "maxSize"
+	        class="pagination-sm">
+
+    	</pagination>
+
+    	  <p>
+      total Items: {{totalItems}}<br />
+      Items per page: {{itemsPerPage}}<br />
+      Current Page: {{currentPage}}
+      </p>
 
 		<!-- home button -->
 		<div class="search"> 

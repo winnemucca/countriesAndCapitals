@@ -25,7 +25,7 @@ angular.module('cacLibrary',[])
 			path = $interpolate(CAC_SEARCH)({
 				countryCode : q
 			});
-
+          console.log(cacRequest.getData(path));
 			return cacRequest.getData(path);
 		}
 
@@ -40,6 +40,7 @@ angular.module('cacLibrary',[])
         $http.get(CAC_API_PREFIX + path + '&' + CAC_API_SUFFIX)
           .success(function(data) {
             defer.resolve(data.geonames);
+            console.log('geonames', data.geonames);
           })
         return defer.promise;
       }
@@ -53,7 +54,7 @@ angular.module('cacLibrary',[])
       path = $interpolate(CAC_SEARCH)({
         countryCode : q
       });
-
+      console.log('promises',cacRequest.getData(path));
       return cacRequest.getData(path);
     }
   }])

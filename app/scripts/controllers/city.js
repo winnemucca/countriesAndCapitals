@@ -3,22 +3,35 @@ viewsModule.config(['$routeProvider',function($routeProvider){
 		templateUrl : "./views/city.html",
     	controller : 'CityCtrl',
     	resolve: {
-    		cityDetails:['cacFindCountry','$route',function(cacFindCountry,$route){
+    		cityDetails:['cacFindCountry','$route', function(cacFindCountry,$route){
     			var countryCode = $route.current.params.countryCode;
     			return cacFindCountry(countryCode);
     		}],
     		countryNeighbors : ['cacFindNeighbors','$route', function(cacFindNeighbors,$route) {
+                console.log(cacFindNeighbors);
     			return cacFindNeighbors;
     		}],
-    		countryDetails : ['$rootScope', '$route', function($rootScope, $route) {
-        // 		var countryIndex = arrayObjectIndexOf($rootScope.countries, $route.current.params.countryCode);
-        // return $rootScope.countries[countryIndex];
+    		countryDetails : ['cacCountries', '$route', function(cacCountries, $route) {
+                console.log(cacCountries);
+                return cacCountries;
       		}]
     	}
 	});
 }]);
 
-viewsModule.controller('CityCtrl', [ 'countryNeighbors', 'countryDetails', 'cityDetails', '$scope',function( countryNeighbors,countryDetails,$scope,cityDetails ) {
-	console.log('cities');
-   }]);
 
+
+viewsModule.controller('CityCtrl', ['countryNeighbors', 'countryDetails', 'cityDetails', 'cacRequest', '$scope', function(countryNeighbors, countryDetails, cityDetails, cacRequest, $scope){
+    console.log(cityDetails);
+
+    $scope.city = cityDetails[0].countryName;
+
+    $scope.population = cityDetails[0].population;
+
+    $scope.capital = cityDetails[0].name
+    console.log(cityDetails[0].adminCode1);
+
+    $scope.neighbors = countryNeighbors;
+    console.log(countryNeighbors);
+
+}]);
