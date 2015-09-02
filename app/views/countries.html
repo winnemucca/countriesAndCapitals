@@ -31,9 +31,9 @@
 					<td><a ng-href="#!/countries/{{country.countryCode}}">{{country.countryName}}</a> </td>
 					<td>{{country.countryCode}} </td>
 					<td>{{country.capital}} </td>
-					<td>{{country.areaInSqKm}} </td>
+					<td>{{country.areaInSqKm |number}} </td>
 					<td>{{country.continentName}} </td>
-					<td>{{country.population}} </td>
+					<td>{{country.population |number}} </td>
 
 				</tr>
 			</tbody>
