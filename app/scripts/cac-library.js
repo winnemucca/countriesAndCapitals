@@ -1,10 +1,10 @@
 angular.module('cacLibrary',[])
 	.constant('CAC_API_PREFIX','http://api.geonames.org')
-  	.constant('CAC_API_SUFFIX', 'username=skauyedauty')
-  	.constant('CAC_COUNTRY_INFO_PATH', '/countryInfoJSON?')
+	.constant('CAC_API_SUFFIX', 'username=skauyedauty')
+	.constant('CAC_COUNTRY_INFO_PATH', '/countryInfoJSON?')
 
-  	.constant('CAC_NEIGHBORS', '/neighboursJSON?country={{ countryCode }}')
-  	.constant('CAC_SEARCH', '/searchJSON?country={{ countryCode }}&featureCode=PPLC')
+	.constant('CAC_NEIGHBORS', '/neighboursJSON?country={{ countryCode }}')
+	.constant('CAC_SEARCH', '/searchJSON?country={{ countryCode }}&featureCode=PPLC')
 
 	.factory('cacCountries',['$http', '$q', 'CAC_API_PREFIX', 'CAC_API_SUFFIX', 'CAC_COUNTRY_INFO_PATH', function($http, $q, CAC_API_PREFIX, CAC_API_SUFFIX, CAC_COUNTRY_INFO_PATH) {
 		return function() {
@@ -13,7 +13,6 @@ angular.module('cacLibrary',[])
 				cache: true })
 			.success(function(countries) {
 		 		defer.resolve(countries.geonames);
-				console.log(countries);
 			});
 			return defer.promise;
 		}
@@ -40,33 +39,32 @@ angular.module('cacLibrary',[])
         $http.get(CAC_API_PREFIX + path + '&' + CAC_API_SUFFIX)
           .success(function(data) {
             defer.resolve(data.geonames);
-            console.log('geonames', data.geonames);
           })
+          console.log('promise',defer.promise)
         return defer.promise;
       }
     };
   }])
 
-  .factory('cacFindCountry',    ['cacRequest', '$interpolate', 'CAC_SEARCH',
-                      function(cacRequest,   $interpolate,   CAC_SEARCH ) {
+  .factory('cacFindCountry', ['cacRequest', '$interpolate', 'CAC_SEARCH', function(cacRequest,   $interpolate,   CAC_SEARCH ) {
     return function(q) {
       var path;
       path = $interpolate(CAC_SEARCH)({
         countryCode : q
       });
-      console.log('promises',cacRequest.getData(path));
+      // console.log('promises',cacRequest.getData(path));
       return cacRequest.getData(path);
     }
   }])
 
- .factory('cacFindNeighbors',    ['cacRequest', '$interpolate', 'CAC_NEIGHBORS',
-                      function(cacRequest,   $interpolate,   CAC_NEIGHBORS ) {
+ .factory('cacFindNeighbors',    ['cacRequest', '$interpolate', 'CAC_NEIGHBORS', function(cacRequest, $interpolate,   CAC_NEIGHBORS ) {
     return function(q) {
+      console.log(q);
       var path;
       path = $interpolate(CAC_NEIGHBORS)({
         countryCode : q
       });
-
+      console.log('neighbors', cacRequest.getData(path))
       return cacRequest.getData(path);
     }
   }])
